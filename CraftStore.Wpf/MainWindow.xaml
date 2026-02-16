@@ -1,0 +1,534 @@
+<Window x:Class="CraftStore.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="CraftStore — Мастерская"
+        Height="720"
+        Width="1100"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0">
+            <TextBlock DockPanel.Dock="Left"
+                       Text="МАГАЗИН РУКОДЕЛИЯ «МАСТЕРСКАЯ»"
+                       FontSize="22"
+                       FontWeight="SemiBold"/>
+            <Button DockPanel.Dock="Right"
+                    Content="Обновить данные"
+                    Padding="12,6"
+                    Click="RefreshButton_Click"/>
+        </DockPanel>
+
+        <TabControl Grid.Row="2" x:Name="MainTabs" SelectionChanged="MainTabs_SelectionChanged">
+
+            <!-- Материалы -->
+            <TabItem Header="Материалы">
+                <Grid Margin="0,12,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <WrapPanel Grid.Row="0" VerticalAlignment="Center">
+                        <TextBlock Text="Вид творчества:" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="MaterialsCraftTypeCombo"
+                                  Width="220"
+                                  Margin="0,0,16,0"
+                                  SelectionChanged="MaterialsFilter_Changed"/>
+
+                        <TextBlock Text="Поиск:" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="MaterialsSearchBox"
+                                 Width="260"
+                                 Margin="0,0,8,0"
+                                 TextChanged="MaterialsFilter_Changed"/>
+
+                        <Button Content="Сброс"
+                                Padding="10,6"
+                                Click="MaterialsReset_Click"/>
+                    </WrapPanel>
+
+                    <DataGrid Grid.Row="1"
+                              x:Name="MaterialsGrid"
+                              Margin="0,12,0,0"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              CanUserAddRows="False"
+                              SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60"/>
+                            <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="2*"/>
+                            <DataGridTextColumn Header="Цвет" Binding="{Binding Color}" Width="140"/>
+                            <DataGridTextColumn Header="Тип" Binding="{Binding MaterialType}" Width="140"/>
+                            <DataGridTextColumn Header="Творчество" Binding="{Binding CraftType}" Width="140"/>
+                            <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="90"/>
+                            <DataGridTextColumn Header="Остаток" Binding="{Binding StockQuantity}" Width="90"/>
+                            <DataGridTextColumn Header="Ед." Binding="{Binding Unit}" Width="80"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Border Grid.Row="2" Margin="0,12,0,0" Padding="12" BorderBrush="#DDD" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <TextBlock Text="Добавить материал" FontSize="16" FontWeight="SemiBold"/>
+                            <UniformGrid Columns="4" Margin="0,10,0,0">
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="ID (опционально)"/>
+                                    <TextBox x:Name="NewMaterialIdBox"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="Название"/>
+                                    <TextBox x:Name="NewMaterialNameBox"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="Цвет"/>
+                                    <TextBox x:Name="NewMaterialColorBox"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock Text="Тип материала"/>
+                                    <TextBox x:Name="NewMaterialTypeBox"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="Вид творчества"/>
+                                    <TextBox x:Name="NewMaterialCraftTypeBox"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="Цена"/>
+                                    <TextBox x:Name="NewMaterialPriceBox"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="Остаток"/>
+                                    <TextBox x:Name="NewMaterialStockBox"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock Text="Ед. измерения"/>
+                                    <TextBox x:Name="NewMaterialUnitBox"/>
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <Button Content="Добавить материал"
+                                    Margin="0,6,0,0"
+                                    Padding="10,6"
+                                    HorizontalAlignment="Left"
+                                    Click="AddMaterial_Click"/>
+                            <TextBlock x:Name="AddMaterialStatusText" Margin="0,6,0,0" Foreground="#444" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- Наборы -->
+            <TabItem Header="Наборы">
+                <Grid Margin="0,12,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <WrapPanel Grid.Row="0" VerticalAlignment="Center">
+                        <TextBlock Text="Сложность:" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="KitsDifficultyCombo"
+                                  Width="220"
+                                  Margin="0,0,16,0"
+                                  SelectionChanged="KitsFilter_Changed"/>
+
+                        <TextBlock Text="Вид творчества:" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="KitsCraftTypeCombo"
+                                  Width="220"
+                                  Margin="0,0,16,0"
+                                  SelectionChanged="KitsFilter_Changed"/>
+
+                        <Button Content="Сброс"
+                                Padding="10,6"
+                                Click="KitsReset_Click"/>
+                    </WrapPanel>
+
+                    <Grid Grid.Row="1" Margin="0,12,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="12"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <DataGrid Grid.Column="0"
+                                  x:Name="KitsGrid"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
+                                  SelectionMode="Single"
+                                  SelectionChanged="KitsGrid_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60"/>
+                                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="2*"/>
+                                <DataGridTextColumn Header="Творчество" Binding="{Binding CraftType}" Width="140"/>
+                                <DataGridTextColumn Header="Сложность" Binding="{Binding Difficulty}" Width="120"/>
+                                <DataGridTextColumn Header="Возраст" Binding="{Binding AgeRecommendation}" Width="80"/>
+                                <DataGridTextColumn Header="Часы" Binding="{Binding EstimatedTime}" Width="70"/>
+                                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="90"/>
+                                <DataGridTextColumn Header="В наличии" Binding="{Binding IsAvailable}" Width="90"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Border Grid.Column="2" Padding="12" BorderBrush="#DDD" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <TextBlock Text="Детали набора" FontSize="16" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="KitDetailsTitle" Margin="0,8,0,0" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="KitDetailsMeta" Margin="0,4,0,0" Foreground="#666"/>
+                                <TextBlock x:Name="KitDetailsPrice" Margin="0,4,0,0"/>
+
+                                <TextBlock Text="Состав:" Margin="0,12,0,4" FontWeight="SemiBold"/>
+                                <ListBox x:Name="KitMaterialsList" Height="160"/>
+
+                                <TextBlock Text="Инструменты:" Margin="0,12,0,4" FontWeight="SemiBold"/>
+                                <ListBox x:Name="KitToolsList" Height="120"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <Border Grid.Row="2" Margin="0,10,0,0" Padding="12" BorderBrush="#DDD" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <TextBlock Foreground="#666"
+                                       Text="Подсказка: выберите набор слева, чтобы увидеть состав и инструменты."/>
+
+                            <TextBlock Text="Добавить набор" FontSize="16" FontWeight="SemiBold" Margin="0,12,0,0"/>
+                            <UniformGrid Columns="4" Margin="0,10,0,0">
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="ID (опционально)"/>
+                                    <TextBox x:Name="NewKitIdBox"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="Название"/>
+                                    <TextBox x:Name="NewKitNameBox"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="Описание"/>
+                                    <TextBox x:Name="NewKitDescriptionBox"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock Text="Вид творчества"/>
+                                    <TextBox x:Name="NewKitCraftTypeBox"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="Сложность"/>
+                                    <TextBox x:Name="NewKitDifficultyBox"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="Возраст"/>
+                                    <TextBox x:Name="NewKitAgeBox" Text="12+"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,8,8">
+                                    <TextBlock Text="Время (часы)"/>
+                                    <TextBox x:Name="NewKitTimeBox" Text="6"/>
+                                </StackPanel>
+                                <StackPanel Margin="0,0,0,8">
+                                    <TextBlock Text="Инструменты включены"/>
+                                    <CheckBox x:Name="NewKitIncludesToolsBox"/>
+                                </StackPanel>
+                            </UniformGrid>
+
+                            <TextBlock Text="Материалы (ID:кол-во, например 1:2, 3:1)" Margin="0,4,0,0"/>
+                            <TextBox x:Name="NewKitMaterialsBox"/>
+
+                            <TextBlock Text="Инструменты (через запятую)" Margin="0,8,0,0"/>
+                            <TextBox x:Name="NewKitToolsBox"/>
+
+                            <Button Content="Добавить набор"
+                                    Margin="0,8,0,0"
+                                    Padding="10,6"
+                                    HorizontalAlignment="Left"
+                                    Click="AddKit_Click"/>
+                            <TextBlock x:Name="AddKitStatusText" Margin="0,6,0,0" Foreground="#444" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- Клиенты -->
+            <TabItem Header="Клиенты">
+                <Grid Margin="0,12,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="380"/>
+                        <ColumnDefinition Width="12"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Padding="12" BorderBrush="#DDD" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <TextBlock Text="Регистрация клиента" FontSize="16" FontWeight="SemiBold"/>
+
+                            <TextBlock Text="ФИО" Margin="0,12,0,4"/>
+                            <TextBox x:Name="CustomerNameBox"/>
+
+                            <TextBlock Text="Телефон" Margin="0,12,0,4"/>
+                            <TextBox x:Name="CustomerPhoneBox"/>
+
+                            <TextBlock Text="Email" Margin="0,12,0,4"/>
+                            <TextBox x:Name="CustomerEmailBox"/>
+
+                            <TextBlock Text="Навыки (новичок/любитель/профи)" Margin="0,12,0,4"/>
+                            <ComboBox x:Name="CustomerSkillCombo" SelectedIndex="0">
+                                <ComboBoxItem Content="новичок"/>
+                                <ComboBoxItem Content="любитель"/>
+                                <ComboBoxItem Content="профи"/>
+                            </ComboBox>
+
+                            <Button Content="Зарегистрировать"
+                                    Margin="0,14,0,0"
+                                    Padding="12,8"
+                                    Click="RegisterCustomer_Click"/>
+
+                            <Separator Margin="0,16,0,16"/>
+
+                            <TextBlock Text="Поиск клиента" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Text="Email или телефон" Margin="0,12,0,4"/>
+                            <DockPanel>
+                                <TextBox x:Name="CustomerSearchBox" DockPanel.Dock="Left" Width="240"/>
+                                <Button Content="Найти" Padding="10,6" Margin="8,0,0,0" Click="FindCustomer_Click"/>
+                            </DockPanel>
+
+                            <TextBlock x:Name="CustomerActionStatus" Margin="0,12,0,0" Foreground="#444" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <DataGrid x:Name="CustomersGrid"
+                                  Grid.Row="0"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
+                                  SelectionMode="Single"
+                                  SelectionChanged="CustomersGrid_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60"/>
+                                <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}" Width="2*"/>
+                                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="140"/>
+                                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="2*"/>
+                                <DataGridTextColumn Header="Навыки" Binding="{Binding SkillLevel}" Width="120"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <Border Grid.Row="1" Margin="0,12,0,0" Padding="12" BorderBrush="#DDD" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <TextBlock Text="Карточка клиента" FontSize="16" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="CustomerCardText" Margin="0,8,0,0" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <!-- Оформить заказ -->
+            <TabItem Header="Оформить заказ">
+                <Grid Margin="0,12,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="360"/>
+                        <ColumnDefinition Width="12"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Padding="12" BorderBrush="#DDD" BorderThickness="1" CornerRadius="8">
+                        <StackPanel>
+                            <TextBlock Text="1. Клиент" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Text="Email или телефон" Margin="0,8,0,4"/>
+                            <DockPanel>
+                                <TextBox x:Name="OrderCustomerSearch" DockPanel.Dock="Left" Width="240"/>
+                                <Button Content="Найти" Padding="10,6" Margin="8,0,0,0" Click="OrderFindCustomer_Click"/>
+                            </DockPanel>
+                            <TextBlock x:Name="OrderCustomerInfo" Margin="0,8,0,0" Foreground="#444" TextWrapping="Wrap"/>
+
+                            <Separator Margin="0,16,0,16"/>
+
+                            <TextBlock Text="2. Проект (опционально)" FontSize="16" FontWeight="SemiBold"/>
+                            <ComboBox x:Name="OrderProjectCombo"
+                                      Margin="0,8,0,0"
+                                      DisplayMemberPath="Name"
+                                      SelectionChanged="OrderProject_SelectionChanged"/>
+                            <TextBlock Text="Название" Margin="0,8,0,4"/>
+                            <TextBox x:Name="OrderNewProjectName"/>
+                            <TextBlock Text="Тип творчества" Margin="0,4,0,4"/>
+                            <TextBox x:Name="OrderNewProjectCraftType" Text="шитье"/>
+                            <Button Content="Создать новый проект"
+                                    Margin="0,8,0,0"
+                                    Padding="10,6"
+                                    Click="OrderCreateProject_Click"/>
+
+                            <Separator Margin="0,16,0,16"/>
+
+                            <TextBlock Text="3. Добавить в заказ" FontSize="16" FontWeight="SemiBold"/>
+                            <RadioButton x:Name="OrderTypeMaterials" Content="Материалы" Margin="0,8,0,0" IsChecked="True" Checked="OrderType_Changed"/>
+                            <RadioButton x:Name="OrderTypeKits" Content="Наборы" Margin="0,4,0,0" Checked="OrderType_Changed"/>
+
+                            <StackPanel x:Name="OrderMaterialPanel" Margin="0,12,0,0">
+                                <TextBlock Text="ID материала"/>
+                                <TextBox x:Name="OrderMaterialIdBox" Margin="0,4,0,0"/>
+                                <TextBlock Text="Количество" Margin="0,8,0,4"/>
+                                <TextBox x:Name="OrderQuantityBox" Margin="0,0,0,0" Text="1"/>
+                                <Button Content="Добавить в корзину"
+                                        Margin="0,8,0,0"
+                                        Padding="10,6"
+                                        Click="OrderAddMaterial_Click"/>
+                            </StackPanel>
+
+                            <StackPanel x:Name="OrderKitPanel" Margin="0,12,0,0" Visibility="Collapsed">
+                                <TextBlock Text="Выберите набор в таблице справа и нажмите кнопку ниже"/>
+                                <TextBlock Text="ID набора (если не выбирается в таблице)" Margin="0,8,0,4"/>
+                                <TextBox x:Name="OrderKitIdBox"/>
+                                <Button Content="Добавить выбранный набор"
+                                        Margin="0,8,0,0"
+                                        Padding="10,6"
+                                        Click="OrderAddKit_Click"/>
+                            </StackPanel>
+
+                            <Separator Margin="0,16,0,16"/>
+
+                            <TextBlock Text="Итого:" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="OrderTotalText" FontSize="18" FontWeight="SemiBold" Foreground="#2E7D32"/>
+                            <Button Content="Оформить заказ"
+                                    Margin="0,12,0,0"
+                                    Padding="14,10"
+                                    FontWeight="SemiBold"
+                                    Background="#2E7D32"
+                                    Foreground="White"
+                                    Click="OrderSubmit_Click"/>
+                            <TextBlock x:Name="OrderStatusText" Margin="0,8,0,0" Foreground="#444" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="12"/>
+                            <RowDefinition Height="200"/>
+                        </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="Каталог (выберите материал или набор)" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                        <DataGrid Grid.Row="1"
+                                  x:Name="OrderCatalogGrid"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
+                                  SelectionMode="Single"
+                                  SelectionUnit="FullRow"
+                                  IsSynchronizedWithCurrentItem="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="2*"/>
+                                <DataGridTextColumn Header="Тип" Binding="{Binding ItemType}" Width="100"/>
+                                <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="90"/>
+                                <DataGridTextColumn Header="Остаток/Наличие" Binding="{Binding StockInfo}" Width="120"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+
+                        <Border Grid.Row="2" Padding="12" BorderBrush="#DDD" BorderThickness="1" CornerRadius="8">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="Корзина" FontWeight="SemiBold"/>
+                                <ListBox Grid.Row="1"
+                                         x:Name="OrderCartList"
+                                         Margin="0,8,0,0"
+                                         DisplayMemberPath="DisplayText"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <!-- Статистика -->
+            <TabItem Header="Статистика">
+                <Grid Margin="0,12,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="12"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <UniformGrid Grid.Row="0" Columns="2">
+                        <Border Padding="12" Margin="0,0,6,0" BorderBrush="#DDD" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <TextBlock Text="Выручка" Foreground="#666"/>
+                                <TextBlock x:Name="RevenueText" FontSize="20" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Padding="12" Margin="6,0,0,0" BorderBrush="#DDD" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <TextBlock Text="Клиенты" Foreground="#666"/>
+                                <TextBlock x:Name="CustomersCountText" FontSize="20" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </Border>
+                    </UniformGrid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="12"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Padding="12" BorderBrush="#DDD" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <TextBlock Text="Популярные виды творчества" FontSize="16" FontWeight="SemiBold"/>
+                                <ListView x:Name="PopularCraftsList" Margin="0,10,0,0">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Вид" DisplayMemberBinding="{Binding CraftType}" Width="200"/>
+                                            <GridViewColumn Header="Клиентов" DisplayMemberBinding="{Binding Count}" Width="100"/>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="2" Padding="12" BorderBrush="#DDD" BorderThickness="1" CornerRadius="8">
+                            <StackPanel>
+                                <TextBlock Text="Низкий остаток (≤10)" FontSize="16" FontWeight="SemiBold"/>
+                                <DataGrid x:Name="LowStockGrid"
+                                          Margin="0,10,0,0"
+                                          AutoGenerateColumns="False"
+                                          IsReadOnly="True"
+                                          CanUserAddRows="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Материал" Binding="{Binding Name}" Width="2*"/>
+                                        <DataGridTextColumn Header="Остаток" Binding="{Binding StockQuantity}" Width="90"/>
+                                        <DataGridTextColumn Header="Ед." Binding="{Binding Unit}" Width="80"/>
+                                        <DataGridTextColumn Header="Творчество" Binding="{Binding CraftType}" Width="140"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+        <TextBlock Grid.Row="4"
+                   Foreground="#666"
+                   Text="Запуск в Visual Studio: откройте CraftStore.sln → поставьте CraftStore.Wpf как Startup Project → Start."/>
+    </Grid>
+</Window>

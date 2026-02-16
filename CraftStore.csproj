@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Не включаем файлы GUI-проекта в консольную сборку -->
+    <Compile Remove="CraftStore.Wpf\**\*.cs" />
+    <EmbeddedResource Remove="CraftStore.Wpf\**\*" />
+    <None Remove="CraftStore.Wpf\**\*" />
+    <Page Remove="CraftStore.Wpf\**\*.xaml" />
+  </ItemGroup>
+
+</Project>

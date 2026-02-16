@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <OutputPath>bin\Release\x64\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <Target Name="CreateShortcut" AfterTargets="Build" Condition="'$(Configuration)'=='Release'">
+    <Exec Command="powershell -NoProfile -Command &quot;$ws = New-Object -ComObject WScript.Shell; $sc = $ws.CreateShortcut('$(OutDir)CraftStore.lnk'); $sc.TargetPath = '$(OutDir)CraftStore.Wpf.exe'; $sc.WorkingDirectory = '$(OutDir)'; $sc.Save()&quot;" />
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CraftStore.csproj" />
+  </ItemGroup>
+
+</Project>

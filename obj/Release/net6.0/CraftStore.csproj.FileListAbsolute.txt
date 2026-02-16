@@ -1,0 +1,14 @@
+c:\Users\adeli\Desktop\учебка\bin\Release\net6.0\CraftStore.exe
+c:\Users\adeli\Desktop\учебка\bin\Release\net6.0\CraftStore.deps.json
+c:\Users\adeli\Desktop\учебка\bin\Release\net6.0\CraftStore.runtimeconfig.json
+c:\Users\adeli\Desktop\учебка\bin\Release\net6.0\CraftStore.dll
+c:\Users\adeli\Desktop\учебка\bin\Release\net6.0\CraftStore.pdb
+c:\Users\adeli\Desktop\учебка\obj\Release\net6.0\CraftStore.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\adeli\Desktop\учебка\obj\Release\net6.0\CraftStore.AssemblyInfoInputs.cache
+c:\Users\adeli\Desktop\учебка\obj\Release\net6.0\CraftStore.AssemblyInfo.cs
+c:\Users\adeli\Desktop\учебка\obj\Release\net6.0\CraftStore.csproj.CoreCompileInputs.cache
+c:\Users\adeli\Desktop\учебка\obj\Release\net6.0\CraftStore.dll
+c:\Users\adeli\Desktop\учебка\obj\Release\net6.0\refint\CraftStore.dll
+c:\Users\adeli\Desktop\учебка\obj\Release\net6.0\CraftStore.pdb
+c:\Users\adeli\Desktop\учебка\obj\Release\net6.0\CraftStore.genruntimeconfig.cache
+c:\Users\adeli\Desktop\учебка\obj\Release\net6.0\ref\CraftStore.dll

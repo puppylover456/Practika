@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CraftStore", "CraftStore.csproj", "{57BF7F45-B78A-4CD7-BF94-F84C554A079B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CraftStore.Wpf", "CraftStore.Wpf\CraftStore.Wpf.csproj", "{D5E2501C-0CA0-46FE-AC84-DC032A10172B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Debug|x64.Build.0 = Debug|Any CPU
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Debug|x86.Build.0 = Debug|Any CPU
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Release|x64.ActiveCfg = Release|Any CPU
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Release|x64.Build.0 = Release|Any CPU
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Release|x86.ActiveCfg = Release|Any CPU
+		{57BF7F45-B78A-4CD7-BF94-F84C554A079B}.Release|x86.Build.0 = Release|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Debug|x64.Build.0 = Debug|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Debug|x86.Build.0 = Debug|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Release|x64.ActiveCfg = Release|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Release|x64.Build.0 = Release|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Release|x86.ActiveCfg = Release|Any CPU
+		{D5E2501C-0CA0-46FE-AC84-DC032A10172B}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

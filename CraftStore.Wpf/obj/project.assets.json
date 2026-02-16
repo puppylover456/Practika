@@ -1,0 +1,116 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0-windows7.0": {
+      "CraftStore/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/CraftStore.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CraftStore.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CraftStore/1.0.0": {
+      "type": "project",
+      "path": "../CraftStore.csproj",
+      "msbuildProject": "../CraftStore.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0-windows7.0": [
+      "CraftStore >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\adeli\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "c:\\Users\\adeli\\Desktop\\учебка\\CraftStore.Wpf\\CraftStore.Wpf.csproj",
+      "projectName": "CraftStore.Wpf",
+      "projectPath": "c:\\Users\\adeli\\Desktop\\учебка\\CraftStore.Wpf\\CraftStore.Wpf.csproj",
+      "packagesPath": "C:\\Users\\adeli\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\adeli\\Desktop\\учебка\\CraftStore.Wpf\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\adeli\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0-windows"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "projectReferences": {
+            "c:\\Users\\adeli\\Desktop\\учебка\\CraftStore.csproj": {
+              "projectPath": "c:\\Users\\adeli\\Desktop\\учебка\\CraftStore.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.100"
+    },
+    "frameworks": {
+      "net6.0-windows7.0": {
+        "targetAlias": "net6.0-windows",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

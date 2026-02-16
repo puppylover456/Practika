@@ -1,0 +1,14 @@
+C:\Users\adeli\Desktop\учебка\bin\Debug\net10.0\CraftStore.exe
+C:\Users\adeli\Desktop\учебка\bin\Debug\net10.0\CraftStore.deps.json
+C:\Users\adeli\Desktop\учебка\bin\Debug\net10.0\CraftStore.runtimeconfig.json
+C:\Users\adeli\Desktop\учебка\bin\Debug\net10.0\CraftStore.dll
+C:\Users\adeli\Desktop\учебка\bin\Debug\net10.0\CraftStore.pdb
+C:\Users\adeli\Desktop\учебка\obj\Debug\net10.0\CraftStore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adeli\Desktop\учебка\obj\Debug\net10.0\CraftStore.AssemblyInfoInputs.cache
+C:\Users\adeli\Desktop\учебка\obj\Debug\net10.0\CraftStore.AssemblyInfo.cs
+C:\Users\adeli\Desktop\учебка\obj\Debug\net10.0\CraftStore.csproj.CoreCompileInputs.cache
+C:\Users\adeli\Desktop\учебка\obj\Debug\net10.0\CraftStore.dll
+C:\Users\adeli\Desktop\учебка\obj\Debug\net10.0\refint\CraftStore.dll
+C:\Users\adeli\Desktop\учебка\obj\Debug\net10.0\CraftStore.pdb
+C:\Users\adeli\Desktop\учебка\obj\Debug\net10.0\CraftStore.genruntimeconfig.cache
+C:\Users\adeli\Desktop\учебка\obj\Debug\net10.0\ref\CraftStore.dll

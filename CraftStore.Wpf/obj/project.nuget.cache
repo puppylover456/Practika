@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "oxCy9GoBDMQ=",
+  "success": true,
+  "projectFilePath": "c:\\Users\\adeli\\Desktop\\учебка\\CraftStore.Wpf\\CraftStore.Wpf.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\adeli\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\adeli\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\adeli\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\adeli\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.36\\microsoft.netcore.app.host.win-x64.6.0.36.nupkg.sha512"
+  ],
+  "logs": []
+}
